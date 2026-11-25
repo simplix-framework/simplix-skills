@@ -21,6 +21,7 @@ This repository holds skills for the SimpliX stack. Claude Code and Codex load t
 - Take a fact from the sources or the documents of the framework at the locked commit, never from memory and never from an earlier handbook. Where a page and the source disagree, the source decides, and the handbook says which pages are stale.
 - Keep the entry file short: the rules that decide most reviews, a table that routes a task to a reference, how to verify. Put detail into `references/`.
 - A rule says what to do and gives its reason in the same sentence or the next.
+- Never name a product, a customer or a repository of somebody who uses the stack. Use placeholders such as `<module>` and `<entity>`; a value true of one project belongs in the configuration of that project.
 
 ## Changing the check
 
