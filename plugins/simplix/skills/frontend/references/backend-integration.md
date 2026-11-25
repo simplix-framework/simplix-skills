@@ -29,7 +29,7 @@ import { createBootAuth } from "@simplix-react-ext/simplix-boot-auth";
 ## Access control
 
 - `createSpringAccessAdapter` reads the permissions of the signed-in user from an endpoint of the backend and turns them into access rules. The backend answers with a map from a resource to its actions, the roles and whether the user is a super administrator.
-- The resource and action names are the ones the backend checks: the permission group of an entity and the actions `list`, `view`, `create`, `edit` and `delete`. A screen hides what the user may not do, and the backend still refuses it.
+- The resource and action names are the ones the backend answers with. Use them as they arrive instead of naming resources in the frontend.
 - The permission endpoints belong to the application, not to the framework. Find the paths the backend serves before configuring the adapter.
 
 ## What a backend change means here

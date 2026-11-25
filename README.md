@@ -39,7 +39,7 @@ node tools/install.mjs codex --marketplace
 | Gates that refuse an edit made without the handbook | ✔ | where the harness runs the hooks of a plugin |
 | Sub-agent for the browser audit | ✔ (`screen-auditor`) | the brief of the skill, given to a sub-agent |
 
-The hooks are written for the events of both harnesses and tested with the inputs each one sends. A harness that does not run them is guided by the routing block `simplix:init` writes into a project.
+The hooks are written for the events of both harnesses and tested with the input shapes each one documents. They were observed running in Claude Code. The Codex command line tool did not run the hooks of a plugin when this was measured (version 0.171.0, `codex exec`), so a project worked on from it is guided by the routing block `simplix:init` writes.
 
 ## How the handbooks stay true
 

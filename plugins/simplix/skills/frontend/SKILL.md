@@ -37,7 +37,7 @@ Read the version of `@simplix-react/ui` or `@simplix-react/contract` the project
 | Set up the UI package | `simplix init-ui` |
 | Generate types from translation files | `simplix i18n-codegen` |
 | Check structure, layers, imports and translations | `simplix validate` |
-| Generate from SimpliX Meta, and compare it with the contract | `simplix meta`, `simplix meta-diff <domain>` |
+| Generate domain packages from SimpliX Meta, and compare the two ways of generating a domain | `simplix meta`, `simplix meta-diff <domain>` |
 
 ## Find the reference
 

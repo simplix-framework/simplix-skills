@@ -25,11 +25,11 @@ Framework pages: `simplix-react:docs/guides/cli-usage.md`, `simplix-react:docs/g
 | `simplix add-module <name>` | adds a feature module with its layers | `--no-i18n`, `--yes` |
 | `simplix scaffold <entity>` | writes the list, form and detail of an entity into a module | `--module`, `--output`, `--native`, `--app` |
 | `simplix add-app <name>` | adds an application | `--native`, `--yes` |
-| `simplix init-ui` | sets up the UI package in the project | `--yes` |
+| `simplix init-ui` | initializes `@simplix-react/ui` in the project | `--yes` |
 | `simplix i18n-codegen` | generates key types from the translation files of the modules | `--watch` |
 | `simplix validate` | checks packages, contracts, layers, imports and translations | `--fix` |
-| `simplix meta` | generates from SimpliX Meta | `--domain`, `--offline`, `--force` |
-| `simplix meta-diff <domain>` | compares SimpliX Meta with the contract of a domain | `--root`, `--package`, `--expect`, `--json` |
+| `simplix meta` | generates domain packages from SimpliX Meta | `--domain`, `--offline`, `--force` |
+| `simplix meta-diff <domain>` | compares what a domain generates from the API document with what it generates from SimpliX Meta | `--root`, `--package`, `--expect`, `--json` |
 
 - `simplix validate` ends with exit code 1 when it finds an error, which makes it a check for a pipeline.
 - Without `--module`, `scaffold` picks the module only when the project has exactly one.

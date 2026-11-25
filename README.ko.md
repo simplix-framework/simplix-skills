@@ -39,7 +39,7 @@ node tools/install.mjs codex --marketplace
 | 핸드북을 읽지 않은 편집을 거부하는 게이트 | ✔ | Codex가 플러그인 훅을 실행하는 경우 |
 | 브라우저 점검용 하위 에이전트 | ✔ (`screen-auditor`) | 스킬의 지시문을 하위 에이전트에 전달 |
 
-훅은 Claude Code와 Codex의 이벤트에 맞춰 작성했고 각각이 보내는 입력으로 테스트합니다. 훅을 실행하지 않는 환경에서는 `simplix:init`이 프로젝트에 기록하는 라우팅 블록으로 안내합니다.
+훅은 Claude Code와 Codex의 이벤트에 맞춰 작성했고 각 문서에 정의된 입력 형식으로 테스트합니다. 실제 실행은 Claude Code에서 확인했습니다. Codex 명령줄 도구는 측정 시점(0.171.0 버전, `codex exec`)에 플러그인 훅을 실행하지 않았으므로, Codex로 작업하는 프로젝트에서는 `simplix:init`이 기록하는 라우팅 블록으로 안내합니다.
 
 ## 핸드북을 프레임워크와 일치시키는 방법
 

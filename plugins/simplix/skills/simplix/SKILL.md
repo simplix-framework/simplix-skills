@@ -49,7 +49,7 @@ An entity that needs an API and screens is built in this order, and each step is
 
 What has to agree across the layers:
 
-- The permission group and the actions `list`, `view`, `create`, `edit` and `delete` are checked by the backend and read by the access rules of the frontend under the same names.
+- The backend checks a permission as a group and an action, such as `list`, `view`, `create`, `edit` and `delete`. The access rules of the frontend are built from what the backend answers for the signed-in user, under the names the backend uses.
 - A list can sort and filter only by fields the search DTO of the backend declares.
 - The backend wraps every answer in one envelope, and reports an error by a code. The frontend reads the body through the generated client and the code through its error type.
 - A field, an operation or a permission that changed on the backend reaches the frontend only after generation ran again. Report the change with the backend work, and do not patch generated frontend files to match.

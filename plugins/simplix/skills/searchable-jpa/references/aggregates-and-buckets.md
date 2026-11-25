@@ -30,4 +30,4 @@ The starter registers a `TimeBucketCounter` bean.
 
 - The result always holds as many values as buckets were asked for, including buckets with a count of 0. `searchable.bucket.max-buckets` bounds one call.
 - An endpoint that takes the window beside the search parameters removes the window parameters before parsing: `TimeWindowParams.strip(params)`, then `SearchableParamsParser`.
-- A column without an offset that is written outside UTC needs the time axis settings the framework page describes.
+- The time axis is an attribute of the root entity. A DTO field name or a path through an association cannot name it. An attribute without an offset is read as a time in the zone of the application.
