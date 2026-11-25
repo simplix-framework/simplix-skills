@@ -1,0 +1,17 @@
+{
+  "name": "simplix-dev",
+  "version": "1.0.0",
+  "description": "Skills for work inside the SimpliX framework repositories and this skill repository: the documentation standards of the frameworks, a fix routine, and the procedure that carries framework changes into the handbooks",
+  "author": {
+    "name": "SimpleCORE Inc.",
+    "email": "dev@simplecore.kr",
+    "url": "https://github.com/simplix-framework"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "simplix",
+    "maintainers",
+    "documentation",
+    "release"
+  ]
+}

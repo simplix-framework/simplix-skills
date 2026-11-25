@@ -1,0 +1,46 @@
+{
+  "simplix": {
+    "2.x": {
+      "ref": "v2.0.2",
+      "commit": "823997e98c19cc0ccb88de2c6cf4daa41516253d"
+    },
+    "1.x": {
+      "ref": "v1.3.1",
+      "commit": "d5818d1bd9fa41564987b802c178e1136747ebf1"
+    },
+    "next": {
+      "ref": "main",
+      "commit": "8104490a393995195074a962dd266b8aab44a495"
+    }
+  },
+  "searchable-jpa": {
+    "2.x": {
+      "ref": "v2.1.0",
+      "commit": "fcd850cac1deacb1dcc5b3d571a2e24537dcd749"
+    },
+    "1.x": {
+      "ref": "v1.2.0",
+      "commit": "aca8517270ff558d2bc938903765216b03078086"
+    },
+    "next": {
+      "ref": "master",
+      "commit": "22effec62f9b1035ed1c7362ec1bb271f19e0d64"
+    }
+  },
+  "simplix-react": {
+    "0.x": {
+      "ref": "v0.3.11",
+      "commit": "64c461c45a1a71f984e9f9e81ad808aa4d6e5603"
+    },
+    "next": {
+      "ref": "main",
+      "commit": "55c7356b6f623b559607e22a22f832e98d91a333"
+    }
+  },
+  "simplix-react-ui-kits": {
+    "next": {
+      "ref": "main",
+      "commit": "a33fe8fcc4fb9e9782ed09a248e0dc6f1288bcf3"
+    }
+  }
+}

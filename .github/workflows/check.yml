@@ -1,0 +1,51 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly: reports a framework release the lock has not followed yet.
+    - cron: "0 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  locked:
+    name: Tests and the check at the locked commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the framework repositories
+        run: |
+          mkdir -p "$RUNNER_TEMP/frameworks"
+          for repository in simplix searchable-jpa simplix-react simplix-react-ui-kits; do
+            git clone --quiet "https://github.com/simplix-framework/$repository" "$RUNNER_TEMP/frameworks/$repository"
+          done
+          npm ci --omit=dev --prefix "$RUNNER_TEMP/frameworks/simplix/simplix-cli"
+      - run: node --test
+      - run: node tools/check.mjs --frameworks "$RUNNER_TEMP/frameworks"
+
+  newest:
+    name: The check at the newest commits
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the framework repositories
+        run: |
+          mkdir -p "$RUNNER_TEMP/frameworks"
+          for repository in simplix searchable-jpa simplix-react simplix-react-ui-kits; do
+            git clone --quiet "https://github.com/simplix-framework/$repository" "$RUNNER_TEMP/frameworks/$repository"
+          done
+          npm ci --omit=dev --prefix "$RUNNER_TEMP/frameworks/simplix/simplix-cli"
+      - run: node tools/changes.mjs --frameworks "$RUNNER_TEMP/frameworks" || true
+      - run: node tools/check.mjs --latest --frameworks "$RUNNER_TEMP/frameworks"

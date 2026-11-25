@@ -1,0 +1,185 @@
+{
+  "vocabulary": {
+    "propertyRoots": [
+      "simplix",
+      "searchable"
+    ],
+    "javaPackages": [
+      "dev.simplecore"
+    ],
+    "packageScopes": [
+      "@simplix-react",
+      "@simplix-react-ext",
+      "@simplix-react-native",
+      "@simplix-react-native-ext",
+      "@simplix-react-ui-kits",
+      "@simplix-boot"
+    ],
+    "commands": {
+      "simplix-boot": {
+        "framework": "simplix",
+        "registry": "generator"
+      },
+      "simplix": {
+        "framework": "simplix-react",
+        "registry": "react-cli"
+      }
+    }
+  },
+  "baselineFile": "plugins/simplix/skills/simplix/scripts/baseline.json",
+  "frameworks": {
+    "simplix": {
+      "repository": "https://github.com/simplix-framework/simplix",
+      "path": "../simplix",
+      "sources": [
+        ":(glob)**/src/main/**",
+        "simplix-cli/src",
+        "simplix-cli/templates",
+        "simplix-cli/bin"
+      ],
+      "lines": {
+        "2.x": {
+          "branch": "main",
+          "track": "tags",
+          "tagPattern": "v2.*"
+        },
+        "1.x": {
+          "branch": "spring-boot-3x",
+          "track": "tags",
+          "tagPattern": "v1.*"
+        },
+        "next": {
+          "branch": "main",
+          "track": "branch"
+        }
+      }
+    },
+    "searchable-jpa": {
+      "repository": "https://github.com/simplix-framework/searchable-jpa",
+      "path": "../searchable-jpa",
+      "sources": [
+        ":(glob)**/src/main/**"
+      ],
+      "lines": {
+        "2.x": {
+          "branch": "master",
+          "track": "tags",
+          "tagPattern": "v2.*"
+        },
+        "1.x": {
+          "branch": "spring-boot-3x",
+          "track": "tags",
+          "tagPattern": "v1.*"
+        },
+        "next": {
+          "branch": "master",
+          "track": "branch"
+        }
+      }
+    },
+    "simplix-react": {
+      "repository": "https://github.com/simplix-framework/simplix-react",
+      "path": "../simplix-react",
+      "sources": [
+        ":(glob)packages/*/src/**",
+        ":(glob)extensions/**/src/**",
+        ":(exclude,glob)**/__tests__/**"
+      ],
+      "lines": {
+        "0.x": {
+          "branch": "main",
+          "track": "tags",
+          "tagPattern": "v0.*"
+        },
+        "next": {
+          "branch": "main",
+          "track": "branch"
+        }
+      }
+    },
+    "simplix-react-ui-kits": {
+      "repository": "https://github.com/simplix-framework/simplix-react-ui-kits",
+      "path": "../simplix-react-ui-kits",
+      "sources": [
+        ":(glob)packages/*/src/**",
+        ":(glob)tools/**",
+        ":(exclude,glob)**/__tests__/**"
+      ],
+      "lines": {
+        "next": {
+          "branch": "main",
+          "track": "branch"
+        }
+      }
+    }
+  },
+  "skills": {
+    "plugins/simplix/skills/searchable-jpa": {
+      "searchable-jpa": [
+        "2.x",
+        "1.x"
+      ]
+    },
+    "plugins/simplix/skills/backend": {
+      "simplix": [
+        "2.x",
+        "1.x"
+      ],
+      "searchable-jpa": [
+        "2.x",
+        "1.x"
+      ]
+    },
+    "plugins/simplix/skills/frontend": {
+      "simplix-react": [
+        "0.x"
+      ]
+    },
+    "plugins/simplix/skills/simplix": {
+      "simplix": [
+        "2.x",
+        "1.x"
+      ],
+      "searchable-jpa": [
+        "2.x",
+        "1.x"
+      ],
+      "simplix-react": [
+        "0.x"
+      ]
+    },
+    "plugins/simplix/skills/frontend-e2e": {
+      "simplix-react": [
+        "0.x"
+      ]
+    },
+    "plugins/simplix/skills/init": {},
+    "plugins/simplix/skills/mockup": {
+      "simplix-react-ui-kits": [
+        "next"
+      ],
+      "simplix-react": [
+        "next"
+      ]
+    },
+    "plugins/simplix-dev/skills/simplix-react-docs": {
+      "simplix-react": [
+        "next"
+      ]
+    },
+    "plugins/simplix-dev/skills/framework-docs": {
+      "simplix": [
+        "next"
+      ],
+      "searchable-jpa": [
+        "next"
+      ]
+    },
+    "plugins/simplix-dev/skills/bugfix": {
+      "simplix-react": [
+        "next"
+      ]
+    },
+    "plugins/simplix-dev/skills/sync-skills": {}
+  }
+}

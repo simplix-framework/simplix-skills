@@ -1,0 +1,18 @@
+{
+  "name": "simplix-skills",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Skills for the SimpliX stack, read by Claude Code and Codex from the same files",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "check:structure": "node tools/check.mjs --structure",
+    "check:latest": "node tools/check.mjs --latest",
+    "changes": "node tools/changes.mjs",
+    "test": "node --test"
+  }
+}

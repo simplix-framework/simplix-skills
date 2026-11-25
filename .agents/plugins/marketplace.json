@@ -1,0 +1,32 @@
+{
+  "name": "simplix-skills",
+  "interface": {
+    "displayName": "SimpliX Skills"
+  },
+  "plugins": [
+    {
+      "name": "simplix",
+      "source": {
+        "source": "local",
+        "path": "./plugins/simplix"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "simplix-dev",
+      "source": {
+        "source": "local",
+        "path": "./plugins/simplix-dev"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

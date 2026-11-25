@@ -1,0 +1,39 @@
+{
+  "name": "simplix-skills",
+  "owner": {
+    "name": "SimpleCORE Inc.",
+    "email": "dev@simplecore.kr",
+    "url": "https://github.com/simplix-framework"
+  },
+  "metadata": {
+    "description": "Skills for the SimpliX stack, read by Claude Code and Codex from the same files",
+    "version": "3.0.0"
+  },
+  "plugins": [
+    {
+      "name": "simplix",
+      "source": "./plugins/simplix",
+      "description": "Handbooks for building applications on the SimpliX stack: the Spring Boot framework and its code generator, Searchable JPA, simplix-react and its UI kits, and a browser-driven audit of the screens",
+      "keywords": [
+        "simplix",
+        "spring-boot",
+        "searchable-jpa",
+        "react",
+        "openapi",
+        "scaffolding",
+        "e2e"
+      ]
+    },
+    {
+      "name": "simplix-dev",
+      "source": "./plugins/simplix-dev",
+      "description": "Skills for work inside the SimpliX framework repositories and this skill repository: the documentation standards of the frameworks, a fix routine, and the procedure that carries framework changes into the handbooks",
+      "keywords": [
+        "simplix",
+        "maintainers",
+        "documentation",
+        "release"
+      ]
+    }
+  ]
+}

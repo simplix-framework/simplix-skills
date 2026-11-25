@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "simplix",
+  "version": "3.0.0",
+  "description": "Handbooks for building applications on the SimpliX stack: the Spring Boot framework and its code generator, Searchable JPA, simplix-react and its UI kits, and a browser-driven audit of the screens",
+  "author": {
+    "name": "SimpleCORE Inc.",
+    "email": "dev@simplecore.kr",
+    "url": "https://github.com/simplix-framework"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "simplix",
+    "spring-boot",
+    "searchable-jpa",
+    "react",
+    "openapi",
+    "scaffolding",
+    "e2e"
+  ]
+}

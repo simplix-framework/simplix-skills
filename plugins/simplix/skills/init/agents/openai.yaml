@@ -1,0 +1,7 @@
+interface:
+  display_name: "SimpliX project setup"
+  short_description: "Write the SimpliX handbook routing into a project"
+  default_prompt: "Use $init to write the SimpliX handbook routing into this project."
+
+policy:
+  allow_implicit_invocation: false

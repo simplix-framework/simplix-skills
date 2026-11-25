@@ -1,0 +1,3 @@
+# Names a handbook writes as code that belong to no SimpliX repository: types of the language, of the
+# platform and of other libraries, and versions that are not a release of a framework.
+# One name per line. A name is added only after confirming that it is not a misspelled framework name.
