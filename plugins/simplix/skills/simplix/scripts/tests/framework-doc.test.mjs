@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
@@ -33,4 +33,9 @@ test("a local clone answers for the tagged version", () => {
   writeFileSync(join(clone, "docs", "en", "guide.md"), "# Later guide\n");
   const out = execFileSync(process.execPath, [SCRIPT, "simplix:docs/en/guide.md", "--version", "1.0.0", "--checkout", clone], { encoding: "utf8" });
   assert.equal(out, "# Tagged guide\n");
+  // An installed skill is reached through a link to its folder.
+  const home = mkdtempSync(join(tmpdir(), "linked-skill-"));
+  symlinkSync(join(dirname(SCRIPT), ".."), join(home, "simplix"));
+  const linked = execFileSync(process.execPath, [join(home, "simplix", "scripts", "framework-doc.mjs"), "simplix:docs/en/guide.md", "--version", "1.0.0", "--checkout", clone], { encoding: "utf8" });
+  assert.equal(linked, "# Tagged guide\n");
 });

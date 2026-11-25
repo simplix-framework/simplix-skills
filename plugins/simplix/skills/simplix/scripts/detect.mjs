@@ -6,9 +6,9 @@
  *   node detect.mjs [dir]          a table for the directory (default: the working directory)
  *   node detect.mjs [dir] --json   the same as JSON
  */
-import { existsSync, lstatSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, lstatSync, readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 const SKIPPED = new Set(["node_modules", ".git", "build", "dist", "target", "out", ".gradle", ".idea", ".turbo", ".next", "coverage"]);
 const MAX_DEPTH = 3;
@@ -193,7 +193,8 @@ export function detect(root, baseline = readBaseline()) {
   return { root, parts };
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+// The script may be run through a link, so both paths are resolved before they are compared.
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const argv = process.argv.slice(2);
   const root = resolve(argv.find((arg) => !arg.startsWith("--")) ?? ".");
   const report = detect(root);

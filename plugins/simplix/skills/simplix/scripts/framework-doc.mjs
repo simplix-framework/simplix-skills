@@ -11,7 +11,8 @@
  * downloaded from the public repository.
  */
 import { execFileSync } from "node:child_process";
-import { pathToFileURL } from "node:url";
+import { realpathSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 const OWNER = "simplix-framework";
 const FRAMEWORKS = ["simplix", "searchable-jpa", "simplix-react", "simplix-react-ui-kits"];
@@ -55,7 +56,8 @@ async function read(request) {
   return response.text();
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+// The script may be run through a link, so both paths are resolved before they are compared.
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     process.stdout.write(await read(parseArguments(process.argv.slice(2))));
   } catch (error) {

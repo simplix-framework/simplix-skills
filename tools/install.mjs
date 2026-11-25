@@ -17,10 +17,10 @@
  * configuration folder and ~/.agents).
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, lstatSync, mkdirSync, readdirSync, readlinkSync, rmSync, symlinkSync } from "node:fs";
+import { lstatSync, mkdirSync, readlinkSync, realpathSync, rmSync, symlinkSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { ROOT, listPlugins, readJson } from "./lib/model.mjs";
 
 /** Where a link points, as an absolute path, or null when the path is not a link. */
@@ -124,7 +124,8 @@ function main(argv) {
   }
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+// The script may be run through a link, so both paths are resolved before they are compared.
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     main(process.argv.slice(2));
   } catch (error) {

@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 import { compareVersions, detect, javaDependencies, nodeDependency, resolveVersion } from "../detect.mjs";
 
 function project(files) {
@@ -76,4 +78,13 @@ test("each part carries the verified version of its line and where it stands", (
   const root = project({ "build.gradle": "dependencies { implementation 'dev.simplecore.simplix:simplix-core:1.2.4' }\n" });
   const [part] = detect(root, { simplix: { "1.x": "1.3.1", "2.x": "2.0.2" } }).parts;
   assert.deepEqual([part.verified, part.standing], ["1.3.1", "older"]);
+});
+
+test("the script prints its report when it is run through a link to the skill folder", () => {
+  const skill = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+  const home = mkdtempSync(join(tmpdir(), "linked-skill-"));
+  symlinkSync(skill, join(home, "simplix"));
+  const root = project({ "build.gradle": "dependencies { implementation 'dev.simplecore.simplix:simplix-core:2.0.2' }\n" });
+  const out = execFileSync(process.execPath, [join(home, "simplix", "scripts", "detect.mjs"), root], { encoding: "utf8" });
+  assert.match(out, /simplix \| 2\.0\.2 \| 2\.x \| backend/);
 });
