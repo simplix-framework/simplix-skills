@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Skills for the SimpliX stack, read by Claude Code and Codex from the same files",
-    "version": "3.0.0"
+    "version": "3.0.1"
   },
   "plugins": [
     {

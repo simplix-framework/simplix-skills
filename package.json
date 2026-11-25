@@ -1,6 +1,6 @@
 {
   "name": "simplix-skills",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "type": "module",
   "description": "Skills for the SimpliX stack, read by Claude Code and Codex from the same files",

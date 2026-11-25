@@ -16,7 +16,8 @@ simplix-boot generated                          # reports the state of every pro
 ```
 
 - A command other than `init`, `version` and `help` runs inside a project: the nearest folder at or above the current one that holds `.simplix`.
-- `init` does not write `.simplix/generator-simplix.json`. That file is written by hand and says where the entities are, where generated code goes and which components are generated.
+- `init` does not write `.simplix/simplix-boot.json`. That file is written by hand and says where the entities are, where generated code goes and which components are generated.
+- A generator that does not know the name `simplix-boot.json` reads only `.simplix/generator-simplix.json`. One that knows it reads `generator-simplix.json` while the project has no `simplix-boot.json`, says so on standard error, and renames the file on `simplix-boot version --write`.
 - The module folder has to exist before `promote` runs.
 - An option a command does not declare stops the command before it does anything. `simplix-boot <command> --help` prints the options of one command.
 
@@ -58,12 +59,14 @@ Run this after the entity yml, a template or the generator changed. `promote` me
 
 - A `conflict` leaves the module file without any template change of that run. Resolve it in the conflict file as the framework page describes, not by copying parts of the generated tree by hand.
 - `promote --force` overwrites every file with the fresh render, edits included. Use it only when the edits are meant to be discarded.
+- A method deleted from a promoted file comes back as a `conflict` when a later template change falls inside that method. The deletion is the edit to keep: resolve that region to the edited side.
+- A merge that applies cleanly can still break the file: a template change that drops an import removes it from a file whose hand-written code still uses the class. Compile the module after `promote`, before `generated` is read as the result.
 - `generated` ends with exit code 1 while any file is `stale`, `conflict` or `no-base`, which makes it a check for a pipeline.
 
 ## Templates and application classes
 
 - Templates come with the generator. A file of the same relative path under `.simplix/templates` replaces the built-in one; `simplix-boot templates` lists which is in use and `simplix-boot templates --eject` copies built-in templates into the project.
-- A class the application writes for itself and generated code calls is named by the project under `supportClasses` in `.simplix/generator-simplix.json`. A built-in template refuses a yml key whose generated code needs a class that is not configured.
+- A class the application writes for itself and generated code calls is named by the project under `supportClasses` in `.simplix/simplix-boot.json`. A built-in template refuses a yml key whose generated code needs a class that is not configured.
 
 ## Versions
 
