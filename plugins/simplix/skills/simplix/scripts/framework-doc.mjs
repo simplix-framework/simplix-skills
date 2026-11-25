@@ -13,9 +13,7 @@
 import { execFileSync } from "node:child_process";
 import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-
-const OWNER = "simplix-framework";
-const FRAMEWORKS = ["simplix", "searchable-jpa", "simplix-react", "simplix-react-ui-kits"];
+import { FRAMEWORKS, OWNER } from "./lib/frameworks.mjs";
 
 /**
  * Reads the command line.

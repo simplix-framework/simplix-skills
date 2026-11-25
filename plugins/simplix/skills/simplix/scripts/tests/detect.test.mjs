@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { compareVersions, detect, javaDependencies, nodeDependency, resolveVersion } from "../detect.mjs";
+import { compareVersions, detect, frameworkRepository, javaDependencies, nodeDependency, resolveVersion } from "../detect.mjs";
 
 function project(files) {
   const root = mkdtempSync(join(tmpdir(), "detect-"));
@@ -87,4 +87,16 @@ test("the script prints its report when it is run through a link to the skill fo
   const root = project({ "build.gradle": "dependencies { implementation 'dev.simplecore.simplix:simplix-core:2.0.2' }\n" });
   const out = execFileSync(process.execPath, [join(home, "simplix", "scripts", "detect.mjs"), root], { encoding: "utf8" });
   assert.match(out, /simplix \| 2\.0\.2 \| 2\.x \| backend/);
+});
+
+test("a framework repository reports no part, from its root and from a folder inside it", () => {
+  const java = project({ ".git/HEAD": "", "settings.gradle": "rootProject.name = 'simplix'\n", "build.gradle": "dependencies { implementation 'dev.simplecore.searchable:searchable-jpa-core:2.1.0' }\n", "simplix-auth/build.gradle": "" });
+  assert.equal(frameworkRepository(java), "simplix");
+  assert.equal(frameworkRepository(join(java, "simplix-auth")), "simplix");
+  assert.deepEqual(detect(java).parts, []);
+  const node = project({ "package.json": '{"name":"simplix-react","dependencies":{"@simplix-react/ui":"workspace:*"}}' });
+  assert.deepEqual(detect(node), { root: node, framework: "simplix-react", parts: [] });
+  const application = project({ ".git/HEAD": "", "settings.gradle": "rootProject.name = 'library'\n", "build.gradle": "dependencies { implementation 'dev.simplecore.simplix:simplix-core:2.0.2' }\n" });
+  assert.equal(frameworkRepository(application), null);
+  assert.equal(detect(application).parts.length, 1);
 });

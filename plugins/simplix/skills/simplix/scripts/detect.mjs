@@ -9,6 +9,7 @@
 import { existsSync, lstatSync, readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { FRAMEWORKS } from "./lib/frameworks.mjs";
 
 const SKIPPED = new Set(["node_modules", ".git", "build", "dist", "target", "out", ".gradle", ".idea", ".turbo", ".next", "coverage"]);
 const MAX_DEPTH = 3;
@@ -114,6 +115,28 @@ function lineOf(framework, version) {
   return major ? `${major}.x` : null;
 }
 
+/**
+ * The framework repository a directory belongs to, or null. The handbooks describe applications
+ * built on the frameworks; work inside a framework repository is not what they cover.
+ */
+export function frameworkRepository(start) {
+  for (let dir = resolve(start); ; dir = dirname(dir)) {
+    const settings = read(join(dir, "settings.gradle")) + read(join(dir, "settings.gradle.kts"));
+    const names = [/rootProject\.name\s*=\s*['"]([^'"]+)['"]/.exec(settings)?.[1]];
+    const manifest = read(join(dir, "package.json"));
+    if (manifest) {
+      try {
+        names.push(JSON.parse(manifest).name);
+      } catch (error) {
+        if (!(error instanceof SyntaxError)) throw error;
+      }
+    }
+    const found = names.find((name) => FRAMEWORKS.includes(name));
+    if (found) return found;
+    if (existsSync(join(dir, ".git")) || dirname(dir) === dir) return null;
+  }
+}
+
 const HANDBOOK = { simplix: "backend", "searchable-jpa": "searchable-jpa", "simplix-react": "frontend" };
 
 /** The versions the handbooks were verified against, written beside this script when they are locked. */
@@ -145,9 +168,11 @@ export function compareVersions(used, verified) {
  *
  * @param {string} root
  * @param {Record<string, Record<string, string>>} [baseline] the verified version of each framework line
- * @returns {{ root: string, parts: { dir: string, framework: string, version: string | null, line: string | null, handbook: string, evidence: string, verified: string | null, standing: string }[] }}
+ * @returns {{ root: string, framework: string | null, parts: { dir: string, framework: string, version: string | null, line: string | null, handbook: string, evidence: string, verified: string | null, standing: string }[] }}
  */
 export function detect(root, baseline = readBaseline()) {
+  const framework = frameworkRepository(root);
+  if (framework) return { root, framework, parts: [] };
   const parts = [];
   for (const dir of directories(root)) {
     const label = relative(root, dir) || ".";
@@ -190,7 +215,7 @@ export function detect(root, baseline = readBaseline()) {
     part.verified = baseline[part.framework]?.[part.line] ?? null;
     part.standing = compareVersions(part.version, part.verified);
   }
-  return { root, parts };
+  return { root, framework: null, parts };
 }
 
 // The script may be run through a link, so both paths are resolved before they are compared.
@@ -200,6 +225,8 @@ if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.me
   const report = detect(root);
   if (argv.includes("--json")) {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+  } else if (report.framework) {
+    console.log(`${root} is the ${report.framework} framework repository: the handbooks describe applications built on it`);
   } else if (report.parts.length === 0) {
     console.log(`${root}: no SimpliX dependency found in the build files`);
   } else {
