@@ -28,6 +28,7 @@ const value = (name) => {
 const root = value("--root") ? resolve(value("--root")) : ROOT;
 const findings = checkStructure(root);
 let commits = {};
+let notes = [];
 if (!flag("--structure")) {
   const drift = checkDrift(root, {
     mode: flag("--latest") ? "latest" : "lock",
@@ -35,14 +36,16 @@ if (!flag("--structure")) {
   });
   findings.push(...drift.findings);
   commits = drift.commits;
+  notes = drift.notes;
 }
 
 if (flag("--json")) {
-  process.stdout.write(`${JSON.stringify({ commits, findings }, null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify({ commits, notes, findings }, null, 2)}\n`);
 } else {
   for (const [id, lines] of Object.entries(commits)) {
     for (const [line, entry] of Object.entries(lines)) console.log(`read ${id} ${line} at ${entry.ref} (${entry.commit.slice(0, 10)})`);
   }
+  for (const note of notes) console.log(`note: ${note}`);
   const byCheck = new Map();
   for (const item of findings) byCheck.set(item.check, [...(byCheck.get(item.check) ?? []), item]);
   for (const [check, items] of [...byCheck].sort()) {

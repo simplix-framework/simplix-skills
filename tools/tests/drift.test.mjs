@@ -99,13 +99,20 @@ test("the generator and the simplix-react tool answer for their commands and fla
   assert.deepEqual(drift("Run `simplix build --fast`.", { framework: react }), ["drift: simplix build has no --fast in simplix-react 1.x (v1.0.0)"]);
 });
 
-test("the newest refs: a line behind its lock is named", () => {
+test("the newest refs: a release the lock has not followed is a finding, a branch that moved is a note", () => {
   const framework = frameworkRepo();
   const root = skillsRepo({ framework: framework.name, lines: ["1.x", "next"] });
   const lock = lockOf(framework);
   lock.demo.next.commit = framework.tagCommit;
-  const found = checkDrift(root, { frameworksDir: framework.base, lock, mode: "latest" }).findings.map((f) => `${f.check}: ${f.message}`);
-  assert.deepEqual(found, ["behind: demo next is locked at main and the newest is main (1 commits later)"]);
+  const moved = checkDrift(root, { frameworksDir: framework.base, lock, mode: "latest" });
+  assert.deepEqual(moved.findings, []);
+  assert.deepEqual(moved.notes, ["demo next is locked at main and the newest is main (1 commits later)"]);
+  git(framework.dir, "tag", "v1.1.0", "HEAD");
+  const released = checkDrift(root, { frameworksDir: framework.base, lock, mode: "latest" }).findings.map((f) => `${f.check}: ${f.message}`);
+  assert.deepEqual(released, [
+    "behind: demo 1.x is locked at v1.0.0 and the newest is v1.1.0 (1 commits later)",
+    "baseline: the line names 1.0.0 and the checked refs are 1.1.0",
+  ]);
 });
 
 test("a lock whose tag was moved is a finding", () => {

@@ -29,7 +29,7 @@ export function loadExternalNames(root) {
  * The commit of every release line: the locked one, or the newest one when asked. A lock that no
  * longer names what it recorded is a finding, since every later reading would be of another tree.
  */
-function resolveCommits(config, lock, frameworks, mode, out) {
+function resolveCommits(config, lock, frameworks, mode, out, notes) {
   const commits = {};
   for (const [id, framework] of Object.entries(frameworks)) {
     commits[id] = {};
@@ -55,7 +55,10 @@ function resolveCommits(config, lock, frameworks, mode, out) {
         commits[id][line] = newest;
         if (locked && framework.commitOf(locked.commit) && locked.commit !== newest.commit) {
           const count = git(framework.path, ["rev-list", "--count", `${locked.commit}..${newest.commit}`]).trim();
-          out.push(finding("frameworks.lock.json", 0, "behind", `${id} ${line} is locked at ${locked.ref} and the newest is ${newest.ref} (${count} commits later)`));
+          const message = `${id} ${line} is locked at ${locked.ref} and the newest is ${newest.ref} (${count} commits later)`;
+          // A branch moves with every commit; a release the lock has not followed is what has to be acted on.
+          if (spec.track === "branch") notes.push(message);
+          else out.push(finding("frameworks.lock.json", 0, "behind", message));
         }
       } else if (locked && framework.commitOf(locked.commit)) {
         commits[id][line] = locked;
@@ -71,7 +74,7 @@ function resolveCommits(config, lock, frameworks, mode, out) {
  * @param {string} root the repository of the skills
  * @param {{ mode?: "lock" | "latest", frameworksDir?: string, lock?: object, baselineFile?: false }} options a lock given
  *   here is read instead of the file; baselineFile false leaves the shipped baseline unchecked while the lock moves
- * @returns {{ findings: object[], commits: object }}
+ * @returns {{ findings: object[], commits: object, notes: string[] }} notes are facts to read that do not fail the check
  */
 export function checkDrift(root, options = {}) {
   const mode = options.mode ?? "lock";
@@ -79,8 +82,9 @@ export function checkDrift(root, options = {}) {
   const lock = options.lock ?? loadLock(root);
   const external = loadExternalNames(root);
   const out = [];
+  const notes = [];
   const frameworks = Object.fromEntries(Object.entries(config.frameworks).map(([id, spec]) => [id, new Framework(id, spec, root, options.frameworksDir)]));
-  const commits = resolveCommits(config, lock, frameworks, mode, out);
+  const commits = resolveCommits(config, lock, frameworks, mode, out, notes);
   const frameworkIds = Object.keys(frameworks);
   const extractTokens = createExtractor(config.vocabulary, frameworkIds);
   const registries = { generator: generatorRegistry, "react-cli": reactCliRegistry };
@@ -249,5 +253,5 @@ export function checkDrift(root, options = {}) {
       }
     }
   }
-  return { findings: out, commits };
+  return { findings: out, commits, notes };
 }
