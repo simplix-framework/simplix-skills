@@ -87,4 +87,4 @@ node tools/check.mjs   # has to end with no findings
 
 ## License
 
-Apache License 2.0. The frameworks the handbooks describe have their own licenses.
+SimpleCORE License 1.0 (SCL-1.0). See [LICENSE](LICENSE); a Korean translation is in [LICENSE_KO](LICENSE_KO). The frameworks the handbooks describe have their own licenses.

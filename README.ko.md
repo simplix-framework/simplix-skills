@@ -87,4 +87,4 @@ node tools/check.mjs   # 지적 사항 없이 끝나야 함
 
 ## 라이선스
 
-Apache License 2.0을 적용합니다. 핸드북이 다루는 프레임워크에는 각 프레임워크의 라이선스가 적용됩니다.
+SimpleCORE License 1.0 (SCL-1.0)을 적용합니다. 전문은 [LICENSE](LICENSE), 한국어 번역은 [LICENSE_KO](LICENSE_KO)에 있습니다. 핸드북이 다루는 프레임워크에는 각 프레임워크의 라이선스가 적용됩니다.
