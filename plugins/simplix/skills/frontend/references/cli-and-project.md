@@ -1,6 +1,6 @@
 # The command line tool and the layout of a project
 
-Framework pages: `simplix-react:docs/guides/cli-usage.md`, `simplix-react:docs/getting-started/installation.md`, `simplix-react:docs/core-concepts/extensions.md`.
+Framework pages: `simplix-react:docs/en/guides/cli-usage.md`, `simplix-react:docs/en/getting-started/installation.md`, `simplix-react:docs/en/core-concepts/extensions.md`.
 
 ## Layout
 

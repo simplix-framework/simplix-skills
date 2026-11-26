@@ -1,6 +1,6 @@
 # Connecting to a SimpliX Spring Boot backend
 
-Framework pages: `simplix-react:docs/guides/extensions.md`, `simplix-react:docs/core-concepts/extensions.md`.
+Framework pages: `simplix-react:docs/en/guides/extensions.md`, `simplix-react:docs/en/core-concepts/extensions.md`.
 
 The packages under the scope `@simplix-react-ext` adapt the framework to a SimpliX backend. They are separate from the core packages and are installed where the backend is a SimpliX application.
 

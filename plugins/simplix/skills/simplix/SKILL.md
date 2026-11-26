@@ -7,7 +7,7 @@ description: "Entry point for work in a project built on the SimpliX stack: the 
 
 SimpliX is a stack for building business applications: a Spring Boot framework with a code generator, a search library for JPA, and a React framework that derives its client from the contract the backend publishes. Each part has its own handbook. This skill finds the parts a project uses and routes to them.
 
-Verified against 2.0.2, 1.3.1, 2.1.0, 1.2.0 and 0.3.11.
+Verified against 2.0.4, 1.3.3, 2.1.1, 1.2.1 and 0.3.12.
 
 ## The parts
 

@@ -7,7 +7,7 @@ description: "Handbook for Java work in an application built on the SimpliX Spri
 
 SimpliX is a set of Spring Boot modules. A starter configures the web layer, JPA, messages, validation, dates and the API document so that every endpoint answers, fails and is described in one way, and a command line tool writes the service, controller and DTOs of an entity on the base classes of the framework.
 
-Verified against 2.0.2 and 1.3.1 with Searchable JPA 2.1.0 and 1.2.0.
+Verified against 2.0.4 and 1.3.3 with Searchable JPA 2.1.1 and 1.2.1.
 
 ## Release lines
 

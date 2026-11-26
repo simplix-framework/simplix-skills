@@ -7,7 +7,7 @@ description: "Handbook for frontend work in a project built on simplix-react. Us
 
 simplix-react derives a typed client, query hooks, form hooks and mock handlers from one contract per domain. The contract is written once, usually generated from the API document of the backend, and everything else follows from it.
 
-Verified against 0.3.11.
+Verified against 0.3.12.
 
 ## Before anything else
 
@@ -60,6 +60,6 @@ Read the version of `@simplix-react/ui` or `@simplix-react/contract` the project
 
 A name written as `simplix-react:<path>` is a file of the simplix-react repository at the version the project uses.
 
-- With the sibling handbook installed, `node ../simplix/scripts/framework-doc.mjs simplix-react:docs/guides/cli-usage.md --version <version>` prints the page for that version.
+- With the sibling handbook installed, `node ../simplix/scripts/framework-doc.mjs simplix-react:docs/en/guides/cli-usage.md --version <version>` prints the page for that version.
 - Without it, read `https://raw.githubusercontent.com/simplix-framework/simplix-react/v<version>/<path>`.
 - Where a page and the installed types disagree, the types win. `references/contract-and-hooks.md` names the pages of this version that still show an earlier shape of the contract.

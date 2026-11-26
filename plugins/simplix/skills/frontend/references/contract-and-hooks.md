@@ -1,6 +1,6 @@
 # Contracts and what is derived from them
 
-Framework pages: `simplix-react:docs/guides/custom-operations.md`, `simplix-react:docs/guides/custom-fetch.md`, `simplix-react:docs/guides/mock-handlers.md`, `simplix-react:docs/core-concepts/cache-invalidation.md`, `simplix-react:docs/core-concepts/mock-data-layer.md`.
+Framework pages: `simplix-react:docs/en/guides/custom-operations.md`, `simplix-react:docs/en/guides/custom-fetch.md`, `simplix-react:docs/en/guides/mock-handlers.md`, `simplix-react:docs/en/core-concepts/cache-invalidation.md`, `simplix-react:docs/en/core-concepts/mock-data-layer.md`.
 
 ## The contract
 
@@ -72,4 +72,4 @@ import { deriveMockHandlers, setupMockWorker } from "@simplix-react/mock";
 
 ## Relations between entities
 
-A child entity names its parent with `parent`, which nests its URLs under the parent and passes the parent id through the client, the query keys and the hooks. `simplix-react:docs/guides/parent-child.md` walks through it; read its contract listings with the note above in mind.
+A child entity names its parent with `parent`, which nests its URLs under the parent and passes the parent id through the client, the query keys and the hooks. `simplix-react:docs/en/guides/parent-child.md` walks through it; read its contract listings with the note above in mind.

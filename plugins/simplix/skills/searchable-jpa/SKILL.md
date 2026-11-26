@@ -7,7 +7,7 @@ description: "Handbook for Searchable JPA, the library that adds searching, sort
 
 Searchable JPA runs a search a client describes (conditions, sort, page) as JPA queries, and runs only what a search DTO declares. The DTO is the contract: a field, an operator or a sort it does not declare is refused before any query runs.
 
-Verified against 2.1.0 and 1.2.0.
+Verified against 2.1.1 and 1.2.1.
 
 ## Release lines
 

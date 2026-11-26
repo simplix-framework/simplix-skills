@@ -1,6 +1,6 @@
 # Lists, forms and detail views
 
-Framework pages: `simplix-react:docs/guides/ui-components.md`, `simplix-react:docs/core-concepts/ui-components.md`, `simplix-react:docs/guides/consumer-styling-setup.md`, `simplix-react:docs/guides/consumer-design-customization.md`.
+Framework pages: `simplix-react:docs/en/guides/ui-components.md`, `simplix-react:docs/en/core-concepts/ui-components.md`, `simplix-react:docs/en/guides/consumer-styling-setup.md`, `simplix-react:docs/en/guides/consumer-design-customization.md`.
 
 `@simplix-react/ui` gives compound components for the screens of an entity. `simplix scaffold <entity>` writes a first version of them into a module; edit what it wrote rather than building the same screens by hand.
 
@@ -35,4 +35,4 @@ import { CrudList, useCrudList } from "@simplix-react/ui";
 
 ## Changing the design
 
-The scope of a change decides where it is made: colours, fonts and radius through the design tokens; one component through an override; one instance through its props. `simplix-react:docs/guides/consumer-design-customization.md` has the decision tree. Copying a component into the project is the last case of that page, for changing the structure of the component itself.
+The scope of a change decides where it is made: colours, fonts and radius through the design tokens; one component through an override; one instance through its props. `simplix-react:docs/en/guides/consumer-design-customization.md` has the decision tree. Copying a component into the project is the last case of that page, for changing the structure of the component itself.

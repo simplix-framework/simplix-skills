@@ -1,46 +1,46 @@
 {
   "simplix": {
     "2.x": {
-      "ref": "v2.0.2",
-      "commit": "823997e98c19cc0ccb88de2c6cf4daa41516253d"
+      "ref": "v2.0.4",
+      "commit": "e26f1f51e51d90a5be2efa2f01b9f87dca812bf6"
     },
     "1.x": {
-      "ref": "v1.3.1",
-      "commit": "d5818d1bd9fa41564987b802c178e1136747ebf1"
+      "ref": "v1.3.3",
+      "commit": "6c901271d2ab6ff9aa15ee82fc9f28da2b11537c"
     },
     "next": {
       "ref": "main",
-      "commit": "8104490a393995195074a962dd266b8aab44a495"
+      "commit": "c64f98e91ea480237830a3e5e6d73eaf94d25f8e"
     }
   },
   "searchable-jpa": {
     "2.x": {
-      "ref": "v2.1.0",
-      "commit": "fcd850cac1deacb1dcc5b3d571a2e24537dcd749"
+      "ref": "v2.1.1",
+      "commit": "1261413e3bbe42a9cf1ac2f87039722a30b0e6da"
     },
     "1.x": {
-      "ref": "v1.2.0",
-      "commit": "aca8517270ff558d2bc938903765216b03078086"
+      "ref": "v1.2.1",
+      "commit": "013685f58f301a595eda6761584e3a755e1ad189"
     },
     "next": {
       "ref": "master",
-      "commit": "22effec62f9b1035ed1c7362ec1bb271f19e0d64"
+      "commit": "e98d3994076ffe79843cddd08937ae0d44f376a6"
     }
   },
   "simplix-react": {
     "0.x": {
-      "ref": "v0.3.11",
-      "commit": "64c461c45a1a71f984e9f9e81ad808aa4d6e5603"
+      "ref": "v0.3.12",
+      "commit": "d06f08ba9c4b912a0a0bdfc78f6e46665a68e079"
     },
     "next": {
       "ref": "main",
-      "commit": "55c7356b6f623b559607e22a22f832e98d91a333"
+      "commit": "c3285bb78d1ca0657f81724188866881a489095c"
     }
   },
   "simplix-react-ui-kits": {
     "next": {
       "ref": "main",
-      "commit": "a33fe8fcc4fb9e9782ed09a248e0dc6f1288bcf3"
+      "commit": "2a53680cc26157c7c65d58e679071e317fc0f8cb"
     }
   }
 }

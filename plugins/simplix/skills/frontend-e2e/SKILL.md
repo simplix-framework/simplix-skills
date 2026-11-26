@@ -7,7 +7,7 @@ description: "Browser-driven audit of the screens of a simplix-react application
 
 A screen is not done because it builds. The defects this audit finds survive a green build and a correct diff: a filter that returns nothing, an empty state that never draws, a dialog that cannot be dismissed, two screens that disagree about the same record. A change that touched a screen is complete once that screen and its neighbours were driven here.
 
-Verified against 0.3.11.
+Verified against 0.3.12.
 
 ## The unit is the cluster
 
